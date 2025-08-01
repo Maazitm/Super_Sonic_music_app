@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/theme.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -33,11 +34,12 @@ class CustomAppBar extends StatelessWidget {
           const SizedBox(width: 12),
           Text(
             title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            // style: const TextStyle(
+            //   color: Colors.white,
+            //   fontSize: 24,
+            //   fontWeight: FontWeight.bold,
+            // ),
+            style : GoogleFonts.sourceCodePro(color: Colors.white ,fontSize: 24)
           ),
           const Spacer(),
           IconButton(

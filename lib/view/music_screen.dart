@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:super_sonic/custom_wedgits/custom_text.dart';
 import 'package:super_sonic/modal/media_file.dart';
 import 'package:super_sonic/wedgits/custom_appbar.dart';
 import 'package:super_sonic/wedgits/media_list_tile.dart';
@@ -24,11 +25,8 @@ class MusicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBar(
-          title: 'Music',
-          onRefresh: onRefresh,
-        ),
-        
+        CustomAppBar(title: 'Music', onRefresh: onRefresh),
+
         // Status message
         if (statusMessage.isNotEmpty)
           Container(
@@ -47,9 +45,7 @@ class MusicScreen extends StatelessWidget {
 
         // Music List
         Expanded(
-          child: audioFiles.isEmpty
-              ? _buildEmptyState()
-              : _buildMusicList(),
+          child: audioFiles.isEmpty ? _buildEmptyState() : _buildMusicList(),
         ),
       ],
     );
@@ -60,28 +56,19 @@ class MusicScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.library_music,
-            size: 80,
-            color: Colors.grey[600],
-          ),
+          Icon(Icons.library_music, size: 80, color: Colors.grey[600]),
           const SizedBox(height: 24),
-          Text(
-            'No Music Found',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[400],
-            ),
+          CustomText(
+            title: ' No Music Found',
+            fontsize: 25,
+            Colors: Colors.white,
           ),
+
           const SizedBox(height: 16),
           Text(
             'Add some music files to your device and tap the refresh button',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[600],
-            ),
+            style: TextStyle(fontSize: 16, color: Colors.grey[600]),
           ),
           const SizedBox(height: 32),
           ElevatedButton.icon(
@@ -100,13 +87,14 @@ class MusicScreen extends StatelessWidget {
       itemCount: audioFiles.length,
       itemBuilder: (context, index) {
         final audioFile = audioFiles[index];
-        
+
         return StreamBuilder<PlayerState>(
           stream: AudioPlayerService().audioPlayer.playerStateStream,
           builder: (context, snapshot) {
-            final isCurrentTrack = AudioPlayerService().currentTrack?.path == audioFile.path;
+            final isCurrentTrack =
+                AudioPlayerService().currentTrack?.path == audioFile.path;
             final isPlaying = snapshot.data?.playing ?? false;
-            
+
             return MediaListTile(
               mediaFile: audioFile,
               isCurrentTrack: isCurrentTrack,

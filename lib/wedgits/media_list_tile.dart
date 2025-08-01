@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_sonic/custom_wedgits/custom_text.dart';
 import 'package:super_sonic/modal/media_file.dart';
 import 'package:super_sonic/services/thumnail_services.dart';
 import '../utils/theme.dart';
@@ -32,14 +33,15 @@ class MediaListTile extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: thumbnailService.buildThumbnailWidget(mediaFile, size: 50),
-        title: Text(
-          mediaFile.displayName,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontWeight: isCurrentTrack ? FontWeight.bold : FontWeight.normal,
-            color: isCurrentTrack ? AppTheme.primaryGreen : Colors.white,
-            fontSize: 16,
-          ),
+        title: CustomText(
+          
+       //   overflow: TextOverflow.ellipsis,
+        //  style: TextStyle(
+        //    fontWeight: isCurrentTrack ? FontWeight.bold : FontWeight.normal,
+       //     color:,
+         //   fontSize: 16,
+       //   ), 
+          title: mediaFile.displayName, fontsize: 16, Colors:  isCurrentTrack ? AppTheme.primaryGreen : Colors.white,
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
